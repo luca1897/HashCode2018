@@ -6,7 +6,7 @@ public class Vehicle {
     private Location position = new Location(0, 0);
     private IndividualRide doingRide = null;
     private ArrayList<IndividualRide> completedRides = new ArrayList<>();
-    private int missingStep = 0;
+    private int missingSteps = 0;
 
     public ArrayList<IndividualRide> getCompletedRides() {
         return completedRides;
@@ -19,7 +19,9 @@ public class Vehicle {
     public void setDoingRide(int currentStep, IndividualRide ride) {
         this.doingRide = ride;
 
-        this.missingStep = ride.getLength() + Integer.max(ride.getEarliestStart() - currentStep, this.getPosition().distance(ride.getStartLocation()));
+        int spaceDistance = this.getPosition().distance(ride.getStartLocation());
+        int timeDistance = ride.getEarliestStart() - currentStep;
+        this.missingSteps = ride.getLength() + Integer.max(spaceDistance, timeDistance);
     }
 
     public Location getPosition() {
@@ -36,8 +38,7 @@ public class Vehicle {
 
     public void move() {
         if (isRiding()) {
-            missingStep--;
-            if (missingStep == 0) {
+            if (--missingSteps == 0) {
                 completedRides.add(doingRide);
                 position = doingRide.getEndLocation();
                 doingRide = null;
