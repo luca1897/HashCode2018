@@ -19,9 +19,11 @@ public class Vehicle {
     public void setDoingRide(int currentStep, IndividualRide ride) {
         this.doingRide = ride;
 
-        int spaceDistance = this.getPosition().distance(ride.getStartLocation());
-        int timeDistance = ride.getEarliestStart() - currentStep;
-        this.missingSteps = ride.getLength() + Integer.max(spaceDistance, timeDistance);
+        if (ride != null) {
+            int spaceDistance = this.getPosition().distance(ride.getStartLocation());
+            int timeDistance = ride.getEarliestStart() - currentStep;
+            this.missingSteps = ride.getLength() + Integer.max(spaceDistance, timeDistance);
+        }
     }
 
     public Location getPosition() {

@@ -7,10 +7,7 @@ import com.pokik.model.Vehicle;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class Main {
    private static Data data;
@@ -18,7 +15,7 @@ public class Main {
    private static HashSet<IndividualRide> takenRides;
    private static ArrayList<Vehicle> vehicles;
 
-   private static List<String> filenames = Arrays.asList(
+   private static List<String> filepaths = Arrays.asList(
            "C:\\Users\\User\\Downloads\\a_example",
            "C:\\Users\\User\\Downloads\\b_should_be_easy",
            "C:\\Users\\User\\Downloads\\c_no_hurry",
@@ -27,15 +24,19 @@ public class Main {
    );
 
    public static void main(String[] args) {
-       for (String filename : filenames) {
-           solveFile(filename);
+       for (String filepath : filepaths) {
+           data = Data.getFromFile(filepath + ".in");
+
+           solveData();
+
+           int index = filepath.lastIndexOf("\\");
+           String filename = filepath.substring(index + 1);
+
+           writeSolution(filepath);
        }
    }
 
-   private static void solveFile(String filename) {
-       // load data
-       data = Data.getFromFile(filename + ".in");
-
+   private static void solveData() {
        rides = new ArrayList<>(data.getIndividualRides());
        takenRides = new HashSet<>();
        vehicles = new ArrayList<>();
@@ -61,7 +62,11 @@ public class Main {
                            continue;
 
                        int distance = calculateDistance(step, vehicle, ride);
-                       if (distance < curBestDistance && distance + ride.getLength() < ride.getLatestFinish() - step) {
+                       // if a ride may obtain a bonus, favor it
+                       if (step + distance <= ride.getEarliestStart())
+                           distance -= data.getPerRideBonus();
+
+                       if (distance < curBestDistance && distance + ride.getLength() <= ride.getLatestFinish() - step) {
                            curBestDistance = distance;
                            bestRide = ride;
                            bestVehicle = vehicle;
@@ -79,8 +84,6 @@ public class Main {
 
            moveAllVehicles();
        }
-
-       writeSolution(filename);
    }
 
    private static int calculateDistance(int curStep, Vehicle vehicle, IndividualRide ride) {
@@ -95,9 +98,9 @@ public class Main {
        }
    }
 
-   private static void writeSolution(String filename) {
+   private static void writeSolution(String filepath) {
        try {
-           PrintStream printStream = new PrintStream(new FileOutputStream(filename + ".out"));
+           PrintStream printStream = new PrintStream(new FileOutputStream(filepath + ".out"));
            for (Vehicle vehicle : vehicles) {
                printStream.print("" + vehicle.getCompletedRides().size());
                for (IndividualRide ride : vehicle.getCompletedRides()) {
