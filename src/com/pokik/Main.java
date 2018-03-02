@@ -4,7 +4,6 @@ import com.pokik.model.Data;
 import com.pokik.model.IndividualRide;
 import com.pokik.model.Vehicle;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -27,7 +26,7 @@ public class Main {
            "C:\\Users\\User\\Downloads\\e_high_bonus"
    );
 
-   public static void main(String[] args) throws FileNotFoundException {
+   public static void main(String[] args) {
        for (String filename : filenames) {
            solveFile(filename);
        }
