@@ -61,7 +61,7 @@ public class Main {
                            continue;
 
                        int distance = calculateDistance(step, vehicle, ride);
-                       if (distance < curBestDistance && distance < ride.getLatestFinish() - step) {
+                       if (distance < curBestDistance && distance + ride.getLength() < ride.getLatestFinish() - step) {
                            curBestDistance = distance;
                            bestRide = ride;
                            bestVehicle = vehicle;
