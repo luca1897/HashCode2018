@@ -17,7 +17,7 @@ public class SolverByVehicles extends Solver {
             while (true)
             {
                 Ride bestRide = null;
-                int bestTime = Integer.MAX_VALUE;
+                int bestDistance = Integer.MAX_VALUE;
 
                 for (Ride ride : data.getRides())
                 {
@@ -25,10 +25,10 @@ public class SolverByVehicles extends Solver {
                         continue;
 
                     int distance = calculateDistance(vehicle.getStepsDone(),vehicle,ride);
-                    if(distance < bestTime && distance + ride.getLength() <= ride.getLatestFinish() - vehicle.getStepsDone())
+                    if(distance < bestDistance && distance + ride.getLength() <= ride.getLatestFinish() - vehicle.getStepsDone())
                     {
                         bestRide = ride;
-                        bestTime = distance;
+                        bestDistance = distance;
                     }
 
                 }
