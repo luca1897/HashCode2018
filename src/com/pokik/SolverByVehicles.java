@@ -3,9 +3,9 @@ package com.pokik;
 import com.pokik.model.Ride;
 import com.pokik.model.Vehicle;
 
-public class SolverByBestRidesInVehicle extends Solver {
+public class SolverByVehicles extends Solver {
 
-    public SolverByBestRidesInVehicle(String filename){
+    public SolverByVehicles(String filename){
         super(filename);
     }
 
