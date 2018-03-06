@@ -1,12 +1,12 @@
 package com.pokik.model;
 
-public class IndividualRide {
+public class Ride {
     private Location startLocation;
     private Location endLocation;
     private int earliestStart;
     private int latestFinish;
 
-    public IndividualRide(int startRowIntersection, int startColumnIntersection, int endRowIntersection, int endColumnIntersection, int earliestStart, int latestFinish) {
+    public Ride(int startRowIntersection, int startColumnIntersection, int endRowIntersection, int endColumnIntersection, int earliestStart, int latestFinish) {
         this.startLocation = new Location(startColumnIntersection, startRowIntersection);
         this.endLocation = new Location(endColumnIntersection, endRowIntersection);
         this.earliestStart = earliestStart;
