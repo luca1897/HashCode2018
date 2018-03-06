@@ -10,7 +10,7 @@ Given a list of pre-booked rides in a city and a fleet of self-driving vehicles,
 For every ride that finishes on time (or early), you will earn points proportional to the distance of that ride; plus an additional bonus if the ride also started precisely on time.
 
 ## Score
-### Score Qualification Round
+### Qualification Round
 | Filename        | Solver           | Score  |
 | ------------- |:-------------:| -----:|
 | A - example      |  | 10 |
@@ -20,7 +20,7 @@ For every ride that finishes on time (or early), you will earn points proportion
 | E - high bonus      |  | 21465945 |
 | **Total**      |  | 48.205.621|
 
-### Score Extended Round
+### Extended Round
 | Filename        | Solver           | Score  |
 | ------------- |:-------------:| -----:|
 | A - example      | SolverByBestVehicleAndBestRide | 10 |
