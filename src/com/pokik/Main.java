@@ -17,11 +17,7 @@ public class Main {
         try {
             for (String filepath : files.keySet()) {
                 Solver sbb;
-                if (filepath.equals("/Users/xxxx/Desktop/Google/c_no_hurry")) {
-                    sbb = (SolverByBestRidesInVehicle) files.get(filepath).getConstructor(String.class).newInstance(filepath);
-                } else
-                    sbb = (SolverByBestVehiclesAndBestRide) files.get(filepath).getConstructor(String.class).newInstance(filepath);
-
+                sbb = (Solver) files.get(filepath).getConstructor(String.class).newInstance(filepath);
                 sbb.solve();
                 sbb.writeSolution();
                 System.out.println(String.valueOf(sbb.getPoints()));
