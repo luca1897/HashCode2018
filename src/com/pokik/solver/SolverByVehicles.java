@@ -1,4 +1,4 @@
-package com.pokik;
+package com.pokik.solver;
 
 import com.pokik.model.Ride;
 import com.pokik.model.Vehicle;

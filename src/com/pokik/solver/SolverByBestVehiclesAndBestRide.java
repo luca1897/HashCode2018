@@ -1,4 +1,4 @@
-package com.pokik;
+package com.pokik.solver;
 
 import com.pokik.model.Ride;
 import com.pokik.model.Vehicle;
@@ -17,7 +17,7 @@ public class SolverByBestVehiclesAndBestRide extends Solver {
                 // searching for the best vehicle which may take the best ride
                 Vehicle bestVehicle = null;
                 Ride bestRide = null;
-                double curBestPoints = Integer.MAX_VALUE;
+                double minDistance = Integer.MAX_VALUE;
 
                 for (Vehicle vehicle : vehicles) {
                     if (vehicle.isRiding()) {
@@ -32,8 +32,8 @@ public class SolverByBestVehiclesAndBestRide extends Solver {
                         // if a ride may obtain a bonus, favor it
                         if (step + distance <= ride.getEarliestStart())
                             distance -= data.getPerRideBonus();
-                        if (distance <= curBestPoints && distance + ride.getLength() <= ride.getLatestFinish() - step) {
-                            curBestPoints = distance;
+                        if (distance <= minDistance && distance + ride.getLength() <= ride.getLatestFinish() - step) {
+                            minDistance = distance;
                             bestRide = ride;
                             bestVehicle = vehicle;
                         }

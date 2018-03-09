@@ -1,5 +1,9 @@
 package com.pokik;
 
+import com.pokik.solver.Solver;
+import com.pokik.solver.SolverByBestVehiclesAndBestRide;
+import com.pokik.solver.SolverByVehicles;
+
 import java.util.*;
 
 public class Main {
